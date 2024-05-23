@@ -1,0 +1,42 @@
+    .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: gray;
+    color: black;
+    padding: 20px 0;
+  }
+  
+  .navLinks,
+  .socialLinks {
+    margin-bottom: 20px;
+  }
+  
+  .navLinks ul,
+  .socialLinks ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navLinks li,
+  .socialLinks li {
+    margin: 0 15px;
+  }
+  
+  .link {
+    color: black;
+    transition: color 0.3s;
+  }
+  
+  .link:hover {
+    color: #fff;
+  }
+  
+  .copyRight {
+    text-align: center;
+    font-size: 14px;
+  }

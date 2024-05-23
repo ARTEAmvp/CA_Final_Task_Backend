@@ -1,0 +1,37 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: gray;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logoImage {
+    max-height: 90px; /* Adjust based on your design */
+    width: auto; /* Or specify a fixed width if needed */
+}
+
+.links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.links li {
+    margin-right: 20px;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: #0070f3; /* Example hover color */
+}
