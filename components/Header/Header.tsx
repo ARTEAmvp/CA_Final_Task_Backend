@@ -1,7 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './Header.module.css';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import cookies from 'js-cookie'
+import { useRouter } from 'next/router';
 
 type HeaderProps = {
   logo: string;
@@ -15,6 +17,20 @@ type LinkType = {
 }
 
 const Header = ({ logo, links }: HeaderProps) => {
+
+  const router = useRouter()
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = cookies.get('jwt_token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const logout = () => {
+    cookies.remove('jwt_token')
+    router.push("/");
+  };
+
   return (
     <div className={styles.main}>
       <Link href="/" className={styles.logo} style={{ textDecoration: 'none' }}>
@@ -30,6 +46,17 @@ const Header = ({ logo, links }: HeaderProps) => {
               </Link>
             </li>
           ))}
+          <li>
+            {isLoggedIn ? (
+              <a href="/" onClick={logout} className={styles.link}>
+                Logout
+              </a>
+            ) : (
+              <Link href="/login" className={styles.link}>
+                Login
+              </Link>
+            )}
+          </li>
         </ul>
       </nav>
     </div>

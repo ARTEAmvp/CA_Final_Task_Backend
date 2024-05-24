@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import cookies from 'js-cookie';
-import { useRouter } from 'next/router';
 import PageTemplate from '@/components/PageTemplate/PageTemplate';
 import QuestionsWrapper from '@/components/QuestionWrapper/QuestionWrapper';
+import { QuestionType } from '../types/question';
 
 const HomePage = () => {
 
-  const router = useRouter();
-
-  const [question, setQuestion] = useState([]);
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
 
   const fetchQuestions = async () => {
     try {
-
       const response = await axios.get(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/questions`);
-
-      console.log(response);
-
-      setQuestion(response.data)
-
-      console.log(question)
-
+      const questionsWithAnswers = await Promise.all(response.data.map(async (question: any) => {
+        const answersResponse = await axios.get(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/question/${question.id}/answers`);
+        return { ...question, answers: answersResponse.data.length };
+      }));
+      setQuestions(questionsWithAnswers);
     } catch(err) {
       console.log('could not fetch');
     }
@@ -34,7 +28,7 @@ const HomePage = () => {
   return (
     <div>
       <PageTemplate>
-          {question && <QuestionsWrapper questions={question}/>}
+        {questions && <QuestionsWrapper questions={questions}/>}
       </PageTemplate>
     </div>
   );

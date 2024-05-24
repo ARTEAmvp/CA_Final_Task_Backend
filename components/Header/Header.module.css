@@ -11,8 +11,8 @@
 }
 
 .logoImage {
-    max-height: 90px; /* Adjust based on your design */
-    width: auto; /* Or specify a fixed width if needed */
+    max-height: 90px;
+    width: auto;
 }
 
 .links {
@@ -33,5 +33,5 @@
 }
 
 .link:hover {
-    color: #0070f3; /* Example hover color */
+    color: white;
 }
