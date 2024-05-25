@@ -3,6 +3,7 @@ import axios from 'axios';
 import PageTemplate from '@/components/PageTemplate/PageTemplate';
 import QuestionsWrapper from '@/components/QuestionWrapper/QuestionWrapper';
 import { QuestionType } from '../types/question';
+import MainFilter from '../MainFilter/MainFilter';
 
 const HomePage = () => {
 
@@ -28,6 +29,7 @@ const HomePage = () => {
   return (
     <div>
       <PageTemplate>
+        {/* <MainFilter questions={questions}/> */}
         {questions && <QuestionsWrapper questions={questions}/>}
       </PageTemplate>
     </div>

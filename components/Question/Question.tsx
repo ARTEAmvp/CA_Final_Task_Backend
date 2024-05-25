@@ -11,7 +11,7 @@ type QuestionProps = {
   answers: number;
 };
 
-const Question = ({ id, user_id, question_text, question_title, date, answers }: QuestionProps) => {
+const Question = ({ id, user_id, question_title, date, answers }: QuestionProps) => {
   const dateObj = new Date(date);
   const formattedDate = !isNaN(dateObj.getTime()) ? dateObj.toLocaleDateString() : "Invalid Date";
 
