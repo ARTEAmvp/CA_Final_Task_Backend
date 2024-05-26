@@ -16,7 +16,7 @@ const Question = ({ id, user_id, question_title, date, answers }: QuestionProps)
   const formattedDate = !isNaN(dateObj.getTime()) ? dateObj.toLocaleDateString() : "Invalid Date";
 
   return (
-    <Link href={`/`} className={styles.wrapper} key={id}>
+    <Link href={`/question/${id}`} className={styles.wrapper} key={id}>
       <div className={styles.infoWrapper}>
         <h2 className={styles.h2}>Question: {question_title}</h2>
         <h2 className={styles.h2}>Number of answers: {answers}</h2>
