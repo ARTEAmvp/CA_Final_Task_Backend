@@ -1,0 +1,14 @@
+.newAnswer {
+    margin-top: 20px;
+  }
+  
+  .newAnswer textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .newAnswer button {
+    display: block;
+  }

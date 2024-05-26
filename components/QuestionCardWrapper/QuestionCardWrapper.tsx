@@ -1,13 +1,13 @@
-import { QuestionType } from "../../types/question";
 import React, { useState, useEffect } from "react";
+import { QuestionType } from "../../types/question";
+import { AnswerType } from "../../types/answer";
 import styles from "./QuestionCardWrapper.module.css";
 import Button from "../Button/Button";
 import axios from "axios";
 import cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Modal from "../Modal/Modal";
-import { AnswerType } from "../../types/answer";
-
+import AnswerForm from "../AnswerPost/AnswerPost";
 
 type QuestionCardWrapperProps = {
   question: QuestionType;
@@ -38,6 +38,10 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
 
     fetchAnswers();
   }, [question.id]);
+
+  const handleNewAnswer = (newAnswer: AnswerType) => {
+    setAnswers([...answers, newAnswer]);
+  };
 
   const deleteItem = async () => {
     try {
@@ -87,7 +91,7 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
         />
       )}
 
-    <div className={styles.answers}>
+      <div className={styles.answers}>
         <h2>Answers</h2>
         {answers.length > 0 ? (
           answers.map((answer) => (
@@ -99,9 +103,9 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
         ) : (
           <p>No answers yet.</p>
         )}
-    </div>
 
-
+      </div>
+      <AnswerForm questionId={question.id} onAnswerPosted={handleNewAnswer} />
     </main>
   );
 };
