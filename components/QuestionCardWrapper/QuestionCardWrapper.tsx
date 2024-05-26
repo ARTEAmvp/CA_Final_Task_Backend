@@ -43,6 +43,25 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
     setAnswers([...answers, newAnswer]);
   };
 
+  const handleDeleteAnswer = async (answerId: string) => {
+    try {
+      const headers = {
+        authorization: cookies.get("jwt_token"),
+      };
+
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_WEBSITE_URL}/answer/${answerId}`,
+        { headers }
+      );
+
+      if (response.status === 200) {
+        setAnswers(answers.filter((answer) => answer.id !== answerId));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const deleteItem = async () => {
     try {
       const headers = {
@@ -90,14 +109,24 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
           onCancel={() => setShowWarning(false)}
         />
       )}
-
+        <div className={styles.answers}>
+            <h2>Answers</h2>
+        </div>
       <div className={styles.answers}>
-        <h2>Answers</h2>
         {answers.length > 0 ? (
           answers.map((answer) => (
             <div key={answer.id} className={styles.answer}>
+             <div>
               <p>{answer.answer_text}</p>
               <small>{new Date(answer.date).toLocaleDateString()}</small>
+             </div>
+              <>
+              <Button
+                isLoading={false}
+                title="Delete the answer"
+                onClick={() => handleDeleteAnswer(answer.id)}
+              />
+              </>
             </div>
           ))
         ) : (
