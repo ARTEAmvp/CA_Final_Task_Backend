@@ -41,10 +41,6 @@
     width: 400px;
 }
 
-.button:disabled {
-    cursor: not-allowed;
-}
-
 .validBtn {
     background-color: #28a745;
 }
@@ -59,4 +55,22 @@
 
 .invalidBtn:hover {
     background-color: #c82333;
+}
+
+@media screen and (max-width: 700px) {
+    .formWrapper {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .formWrapper {
+        max-width: 250px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .formWrapper {
+        max-width: 120px;
+    }
 }
