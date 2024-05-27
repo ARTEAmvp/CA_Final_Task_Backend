@@ -2,23 +2,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
+    padding: 2rem;
   }
-  
+
   .questionWrapper {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    margin: auto;
-    margin-top: 40px;
+    width: 100%;
   }
-  
-  .questionWrapper:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
 
   .filterButtons {
     align-items: center;
@@ -59,5 +48,18 @@
     gap: 10px;
     margin: auto;
     margin-top: 20px;
+    margin-bottom: 20px;
     width: 60%;
+  }
+
+  @media screen and (max-width: 768px){
+    .cardsWrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .filterButtonsWrapper {
+      flex-wrap: wrap;
+    }
   }

@@ -5,6 +5,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: gray;
+    padding: 0 2rem;
 }
 
 .logo {
@@ -49,5 +50,12 @@
 
     .burgerBtn {
         display: block;
+    }
+}
+
+@media (max-width: 394px) {
+
+    .main {
+        justify-content: center;
     }
 }
