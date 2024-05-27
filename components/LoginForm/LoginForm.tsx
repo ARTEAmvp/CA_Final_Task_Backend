@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import cookie from "js-cookie";
 import Button from "../Button/Button";
+import Link from "next/link";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -73,6 +74,10 @@ const LoginForm = () => {
       {isBadData && (
         <div className={styles.error}>Your provided data is bad</div>
       )}
+
+      <div>
+        <Link className={styles.registerLink} href={'/register'}>Don't have an account? Register by click here</Link>
+      </div>
     </div>
   );
 };

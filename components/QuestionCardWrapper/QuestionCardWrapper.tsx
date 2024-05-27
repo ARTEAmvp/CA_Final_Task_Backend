@@ -151,7 +151,10 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
         )}
 
       </div>
-      <AnswerForm questionId={question.id} onAnswerPosted={newAnswer} />
+      <div className={styles.answerField}>
+        <h1>Your Answer</h1>
+        <AnswerForm questionId={question.id} onAnswerPosted={newAnswer} />
+      </div>
     </main>
   );
 };
