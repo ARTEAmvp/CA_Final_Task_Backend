@@ -1,0 +1,19 @@
+.burgerButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobileMenuOpen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    height: calc(100vh - 80px);
+    left: 0;
+    top: 90px;
+    transition: 0.3s;
+}

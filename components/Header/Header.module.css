@@ -1,5 +1,7 @@
 .main {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     justify-content: space-between;
     align-items: center;
     background-color: gray;
@@ -34,4 +36,18 @@
 
 .link:hover {
     color: white;
+}
+
+.burgerBtn {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktopNav {
+        display: none;
+    }
+
+    .burgerBtn {
+        display: block;
+    }
 }

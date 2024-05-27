@@ -4,6 +4,7 @@ import styles from './Header.module.css';
 import { useEffect, useState } from 'react';
 import cookies from 'js-cookie'
 import { useRouter } from 'next/router';
+import MobileMenu from '../MobileMenu/MobileMenu';
 
 type HeaderProps = {
   logo: string;
@@ -37,7 +38,7 @@ const Header = ({ logo, links }: HeaderProps) => {
         <img src={logo} alt="Logo" className={styles.logoImage} />
       </Link>
 
-      <nav>
+      <nav className={styles.desktopNav}>
         <ul className={styles.links}>
           {links.map((link) => (
             <li key={link.id}>
@@ -59,6 +60,9 @@ const Header = ({ logo, links }: HeaderProps) => {
           </li>
         </ul>
       </nav>
+      <div className={styles.burgerBtn}>
+        <MobileMenu links={links}/>
+      </div>
     </div>
   );
 }
