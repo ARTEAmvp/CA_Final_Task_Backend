@@ -21,7 +21,7 @@ const Footer = ({ footerLinks, socialLinks }: FooterProps) => {
           <ul>
             {footerLinks.map((link) => (
               <li key={link.id}>
-                <Link href={link.href}>
+                <Link href={link.href} className={styles.linksDecoration}>
                   <span className={styles.link}>{link.title}</span>
                 </Link>
               </li>
@@ -32,7 +32,7 @@ const Footer = ({ footerLinks, socialLinks }: FooterProps) => {
           <ul>
             {socialLinks.map((link) => (
               <li key={link.id}>
-                <Link href={link.href}>
+                <Link href={link.href} className={styles.linksDecoration}>
                   <span className={styles.link}>{link.title}</span>
                 </Link>
               </li>

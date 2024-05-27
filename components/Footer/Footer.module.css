@@ -12,10 +12,18 @@
   .socialLinks {
     margin-bottom: 20px;
   }
+
+
+  .linksDecoration {
+    text-decoration: none;
+  }
+
   
   .navLinks ul,
   .socialLinks ul {
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -38,4 +46,18 @@
   .copyRight {
     text-align: center;
     font-size: 14px;
+  }
+
+  @media screen and (max-width: 450px) {
+    .navLinks ul,
+    .socialLinks ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 250px;
+    }
+
+    .navLinks ul {
+      border-bottom: 1px solid black;
+      padding: 1rem;
+    }
   }
