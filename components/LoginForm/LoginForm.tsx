@@ -43,7 +43,6 @@ const LoginForm = () => {
 
       setLoading(false);
 
-      console.log("response", response);
     } catch (err) {
       setBadData(true);
       console.log("err", err);

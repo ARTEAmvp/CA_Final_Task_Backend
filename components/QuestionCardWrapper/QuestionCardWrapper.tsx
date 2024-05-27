@@ -8,6 +8,7 @@ import cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Modal from "../Modal/Modal";
 import AnswerForm from "../AnswerPost/AnswerPost";
+import Answer from "../AnswerCount/AnswerCount";
 
 type QuestionCardWrapperProps = {
   question: QuestionType;
@@ -41,6 +42,12 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
 
   const handleNewAnswer = (newAnswer: AnswerType) => {
     setAnswers([...answers, newAnswer]);
+  };
+
+  const handleLikeDislikeUpdate = (updatedAnswer: AnswerType) => {
+    setAnswers(answers.map((answer) =>
+      answer.id === updatedAnswer.id ? updatedAnswer : answer
+    ));
   };
 
   const handleDeleteAnswer = async (answerId: string) => {
@@ -116,10 +123,12 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
         {answers.length > 0 ? (
           answers.map((answer) => (
             <div key={answer.id} className={styles.answer}>
-             <div>
-              <p>{answer.answer_text}</p>
-              <small>{new Date(answer.date).toLocaleDateString()}</small>
-             </div>
+            <Answer
+              key={answer.id}
+              answer={answer}
+              onLikeDislikeUpdate={handleLikeDislikeUpdate}
+              onDelete={() => handleDeleteAnswer(answer.id)}
+            />
               <>
               <Button
                 isLoading={false}
