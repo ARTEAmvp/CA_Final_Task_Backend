@@ -9,13 +9,30 @@
   flex: 0 0 auto;
   justify-content: flex-start;
   align-items: center;
+  border-bottom: 2px solid gray;
+}
+
+.questionSpec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  border-bottom: 2px solid gray;
+  padding-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.questionCreationDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
 }
 
 .answers {
   flex: 1 1 auto;
   overflow-y: auto;
   max-height: 50vh;
-  margin-top: 20px;
 }
 
 .answer {
@@ -23,6 +40,10 @@
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
+}
+
+.answer:last-child {
+  border-bottom: 1px solid #ccc;
 }
 
 .answer p {
@@ -58,6 +79,10 @@
 
 .info h1 {
   font-size: 3rem;
+}
+
+.answers h2 {
+  margin-bottom: 0;
 }
 
 .info p {

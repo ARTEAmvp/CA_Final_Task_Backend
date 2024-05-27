@@ -15,6 +15,7 @@ type QuestionCardWrapperProps = {
 };
 
 const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
+  
   const router = useRouter();
   const [isShowWarning, setShowWarning] = useState(false);
   const [answers, setAnswers] = useState<AnswerType[]>([]);
@@ -40,17 +41,17 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
     fetchAnswers();
   }, [question.id]);
 
-  const handleNewAnswer = (newAnswer: AnswerType) => {
+  const newAnswer = (newAnswer: AnswerType) => {
     setAnswers([...answers, newAnswer]);
   };
 
-  const handleLikeDislikeUpdate = (updatedAnswer: AnswerType) => {
+  const likeDislikeUpdate = (updatedAnswer: AnswerType) => {
     setAnswers(answers.map((answer) =>
       answer.id === updatedAnswer.id ? updatedAnswer : answer
     ));
   };
 
-  const handleDeleteAnswer = async (answerId: string) => {
+  const deleteAnswer = async (answerId: string) => {
     try {
       const headers = {
         authorization: cookies.get("jwt_token"),
@@ -96,17 +97,20 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
     <main className={styles.wrapper}>
       <div className={styles.info}>
         <h1>{question.question_title}</h1>
+        <div className={styles.questionSpec}>
+          <div className={styles.questionCreationDate}>
+             <p>Asked on</p> <h3>{new Date(question.date).toLocaleDateString()}</h3>
+          </div>
+          <Button
+            className={styles.deleteButton}
+            type="WARNING"
+            isLoading={false}
+            title="Delete the question"
+            onClick={() => setShowWarning(true)}
+          />
+        </div>
         <p>{question.question_text}</p>
-        <h3>{new Date(question.date).toLocaleDateString()}</h3>
-        <h3>{question.user_id}</h3>
 
-        <Button
-          className={styles.deleteButton}
-          type="WARNING"
-          isLoading={false}
-          title="Delete the question"
-          onClick={() => setShowWarning(true)}
-        />
       </div>
 
       {isShowWarning && (
@@ -116,9 +120,13 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
           onCancel={() => setShowWarning(false)}
         />
       )}
-        <div className={styles.answers}>
-            <h2>Answers</h2>
-        </div>
+      <div className={styles.answers}>
+        {answers.length === 1 ? (
+          <h2>Answer</h2>
+        ) : (
+          <h2>{answers.length} Answers</h2>
+        )}
+      </div>
       <div className={styles.answers}>
         {answers.length > 0 ? (
           answers.map((answer) => (
@@ -126,14 +134,14 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
             <Answer
               key={answer.id}
               answer={answer}
-              onLikeDislikeUpdate={handleLikeDislikeUpdate}
-              onDelete={() => handleDeleteAnswer(answer.id)}
+              onLikeDislikeUpdate={likeDislikeUpdate}
+              onDelete={() => deleteAnswer(answer.id)}
             />
               <>
               <Button
                 isLoading={false}
                 title="Delete the answer"
-                onClick={() => handleDeleteAnswer(answer.id)}
+                onClick={() => deleteAnswer(answer.id)}
               />
               </>
             </div>
@@ -143,7 +151,7 @@ const QuestionCardWrapper = ({ question }: QuestionCardWrapperProps) => {
         )}
 
       </div>
-      <AnswerForm questionId={question.id} onAnswerPosted={handleNewAnswer} />
+      <AnswerForm questionId={question.id} onAnswerPosted={newAnswer} />
     </main>
   );
 };

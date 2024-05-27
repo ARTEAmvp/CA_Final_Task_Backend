@@ -1,5 +1,5 @@
 import React from "react";
-import Spinner from '../Spinner/Spinner'
+import Spinner from '../Spinner/Spinner';
 import styles from "./Button.module.css";
 
 type ButtonProps = {
@@ -19,9 +19,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      className={`${styles.main} ${type === "WARNING" && styles.warning} ${
-        className && className
-      }`}
+      className={`${styles.main} ${type === "WARNING" ? styles.warning : ""} ${className ? className : ""}`}
       onClick={onClick}
     >
       {isLoading ? <Spinner /> : <>{title}</>}

@@ -32,27 +32,32 @@ const Answer = ({ answer, onLikeDislikeUpdate }: AnswerProps) => {
     }
   };
 
+  const likeCount = answer.likes.length;
+  const dislikeCount = answer.dislikes.length;
+  const totalCount = likeCount - dislikeCount;
+
   return (
     <div className={styles.answer}>
-      <div>
-        <p>{answer.answer_text}</p>
-        <small>{new Date(answer.date).toLocaleDateString()}</small>
-      </div>
-      <div className={styles.actions}>
-        <div>
-          <span>Likes: {answer.likes.length}</span>
-          <span>Dislikes: {answer.dislikes.length}</span>
+      <div className={styles.actionSelect}>
+        <Button
+          isLoading={false}
+          title="👍"
+          onClick={() => handleToggleLikeDislike('like')}
+          className={`${styles.upVoteButton} ${styles.upVote}`}
+        />
+        <div className={styles.count}>
+          {totalCount}
         </div>
         <Button
           isLoading={false}
-          title="Like"
-          onClick={() => handleToggleLikeDislike('like')}
-        />
-        <Button
-          isLoading={false}
-          title="Dislike"
+          title="👎"
           onClick={() => handleToggleLikeDislike('dislike')}
+          className={`${styles.downVoteButton} ${styles.downVote}`}
         />
+      </div>
+      <div className={styles.answerInfo}>
+        <p>{answer.answer_text}</p>
+        <small>Answered on: {new Date(answer.date).toLocaleDateString()}</small>
       </div>
     </div>
   );

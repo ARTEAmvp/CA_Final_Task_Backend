@@ -45,3 +45,9 @@
 .link:hover {
   text-decoration: underline;
 }
+
+@media screen and (max-width: 394px){
+  .mobileMenuOpen {
+    top: 150px;
+  }
+}
