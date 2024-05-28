@@ -68,6 +68,7 @@ const Register = () => {
         />
 
         <input
+        type='password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="password..."
@@ -77,7 +78,7 @@ const Register = () => {
         <div className={styles.error}>Please fill all the inputs</div>
       )}
 
-        <Button isLoading={isLoading} onClick={createAccount} title="Create account" />
+        <Button isLoading={isLoading} onClick={createAccount} title="Create an account" />
     </div>
     </PageTemplate>
   )
